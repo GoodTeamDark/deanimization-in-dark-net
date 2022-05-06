@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/css/shop.css">
+    <title>Shop</title>
+</head>
+<body>
+    <header>
+        <div class="top_line_location">
+            <div class="loc">
+                <img src="{{ url_for('static',filename='img/location-img.svg')}}" alt="говно" class="location-image" style="width: 20px;height: 20px;margin-left: 50px;">
+            </div>
+            <div class="city">
+                <a href=""><p style="color: blue;padding-left: 10px;">Москва</p></a>
+            </div>
+        </div>
+        <div class="user_menu">
+            <div class="logo_and_search">
+                <div class="logo">
+                    <a href="{{url_for('index')}}"><img src="{{ url_for('static',filename='img/logo.svg')}}" alt="logo" style="width: 250px;height: 80px;"></a>
+                </div>
+                <div class="search">
+                    <input type="search" id="site-search" name="string" autocomplete="on" width="100px" placeholder="Поиск...">
+                    <button style="margin-left: -3px;">Search</button>
+                </div>
+            </div>
+            <div class="account_menu">
+                <div class="cart">
+                   <a href="cart.html" class="menu_links"><img src="{{ url_for('static',filename='img/cart.svg')}}" alt="cart" ></a>
+                </div>
+                <div class="mail">
+                    <a href="" class="menu_links"><img src="{{ url_for('static',filename='img/mail.svg')}}" alt="mail"></a>
+                </div>
+                <div class="curr_balance">
+                    <div class="wallet"><a href="" class="menu_links"><img src="{{ url_for('static',filename='img/wallet.svg')}}" alt="wallet"></a></div>
+                    <div class="balance"><a href="" style="color: blue;"><p>#цифры баланса</p></a></div>
+                </div>
+                <div class="profile">
+                    <a href="{{url_for('logout')}}" class="menu_links"><img src="{{ url_for('static',filename='img/profile_av.svg')}}" alt="profile" ></a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="menu">
+        <nav>
+            <ul class="topmenu">
+                <li><a href="" class="down">Категории</a>
+                <ul class="submenu">
+                    <li><a href="">какая-то категория</a></li>
+                    <li><a href="">какая-то категория</a></li>
+                    <li><a href="">какая-то категория</a></li>
+                    <li><a href="">какая-то категория</a></li>
+                    <li><a href="">какая-то категория</a></li>
+                    <li><a href="">какая-то категория</a></li>
+                    <li><a href="">какая-то категория</a></li>
+                    <li><a href="">какая-то категория</a></li>
+                    <li><a href="">какая-то категория</a></li>
+                    <li><a href="">какая-то категория</a></li>
+                    <li><a href="">какая-то категория</a></li>
+                    <li><a href="">какая-то категория</a></li>
+                </ul>
+                </li>
+                <li><a href="" class="down">Магазины</a>
+                </li>
+                <li><a href="">Товары</a></li>
+                <li><a href="">Избранное</a></li>
+                
+            </ul>
+        </nav>
+    </div>
+    <div class="shop_showcase">
+        <div class="upper_part">
+            <div class="shop_name" style="background: #c7b39b url({{ url_for('static',filename='img/background1.jpg')}}); background-size: cover;">
+
+                <img src="{{ url_for('static',filename='/img/pyatorochka.png')}}" alt="main_photo_shop"  width="170px" height="170px"/>
+                <div class="name">
+                    <p>Пятёрочка > Витрина</p>
+                </div>
+            </div>
+            <div class="menu1">
+                <nav>
+                    <ul class="topmenu1">
+                        <li><a href="{{url_for('shop')}}">Витрина</a>
+                        </li>
+                        <li><a href="">О магазине</a>
+                        </li>
+                        <li><a href="">Отзывы</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+
+        <div class="product_container">
+            <div class="row">
+                <div class="col-sm-4">
+                    {%for i in range(0,8)%}
+                    <div class="product">
+                        <div class="product-img">
+                            <a href="shop.html"><img src="/static/img/shop_avs/Kirkorov.jpg" alt="shop-ava" ></a>
+                        </div>
+                        <p class="product-title">
+                            <a href="shop.html">1</a>
+                        </p>
+                        <p class="product-desc">Внутри</p>
+                        <p class="product-rating">10 Мартини из 10</p>
+
+                    </div>
+                    {%endfor%}
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <footer>
+        <div class="top-text-signature">
+            <p>Этот жесткий сайт был сделан мной (нами)!!!</p>
+        </div>
+        <div class="main-contacts-list">
+            <ul class="bottom_menu">
+                    <li><a href="" class="down"><h3>Жесткий контакт 1</h3></a>
+                        <ul class="submenu-contacts">
+                            <li><a href="">Кудаков Роман</a></li>
+                            <li><a href="">БББО-01-19</a></li>
+                            <li><a href="">Бэкэнд разработка, логирование, верстка, разработка БД</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="" class="down"><h3>Жесткий контакт 2</h3></a>
+                        <ul class="submenu-contacts">
+                            <li><a href="">Фадеев Артём</a></li>
+                            <li><a href="">БББО-01-19</a></li>
+                            <li><a href="">Разработка БД и бэкэнда</a></li>
+                        </ul>
+                    </li>
+                    <li><a href=""><h3>Жесткий контакт 3</h3></a>
+                        <ul class="submenu-contacts">
+                            <li><a href="">Фомин Андрей</a></li>
+                            <li><a href="">БББО-01-19</a></li>
+                            <li><a href="">Разработка JS, верстка</a></li>
+                        </ul></li>
+                    <li><a href=""><h3>Жесткий контакт 4</h3></a>
+                        <ul class="submenu-contacts">
+                            <li><a href="">Борисов Константин</a></li>
+                            <li><a href="">БББО-01-19</a></li>
+                            <li><a href="">Душа компании и просто хороший человек</a></li>
+                        </ul></li>
+                    
+            </ul>
+            </Ul>
+        </div>
+        <div class="bottom-text-copyrights">
+
+        </div>
+    </footer>
+</body>

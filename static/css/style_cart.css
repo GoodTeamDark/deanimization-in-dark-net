@@ -1,0 +1,242 @@
+@charset "utf-8";
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    width: 100%;
+    height: 100%;
+    color: rgb(0, 153, 255);
+    background: #f7f7f7;
+    font-size: 1em;
+    font-family: sans-serif;
+    line-height: 130%;
+} 
+
+header,footer{
+     width: 100%;
+     background-color: rgb(68, 148, 218);
+     color: #f7f7f7;
+     min-height: 50px;
+ }
+ header{
+     
+     border-bottom: 2px solid silver;
+     height: 105px;
+     background-color: whitesmoke;
+ }
+ .content{
+     height: 1000px;
+     margin: 5px 400px 400px 400px;
+ }
+ h1{
+     text-align: center;
+ }
+ footer{
+     border-top: 2px solid silver;
+     margin-top: 10px;
+ }
+ a{
+     color: rgb(99, 180, 212);
+     text-decoration: solid;
+ }
+ a:hover{
+    color: rgb(38, 214, 205);
+    text-decoration: 1;
+}
+a:active{color: rgb(56, 79, 211);}
+.top_line_location{
+    width: 100%;
+    height: 25px;
+    margin: 0;
+    padding: 0;
+    background-color: rgb(255, 255, 255);
+    float: left;
+}
+.top_line_location{
+    background: radial-gradient(blue,lightblue,pink);
+}
+.loc{
+    width: 65px;
+    height: 50.79px;
+    margin: 3px,0,0,100px;
+    padding-left: 100px;
+    padding-top: 3px;
+    float: left;
+}
+.city{
+    width: 200px;
+    height: 20.79px;
+    padding-left: 7px;
+    padding-top: 4px;
+    font-size:15px;
+    float: left;
+}
+.user_menu{
+    
+    background-color: lightblue;
+    height: 80px;
+    width: 100%;
+    float: left;
+}
+.logo_and_search{
+    height: 80px;
+    width: 500px;
+    float: left;
+}
+.logo{
+    float: left;
+    width: 200px;
+    height: 80px;
+    float: left;
+}
+.search{
+    float: left;
+    margin-left: 0;
+    padding-left: 0;
+    padding-top: 25px;
+    height: 55px;
+    width: 250px;
+    float: left;
+}
+.account_menu{
+    width: 490px;
+    height: 80px;
+    margin-left: 1200px;
+}
+.cart{
+    width: 25px;
+    height: 25px;
+    float: left;
+    margin: 10px;
+    margin-top: 30px;
+}
+.mail{
+    width: 25px;
+    height: 25px;
+    float: left;
+    margin: 10px;
+    margin-top: 30px;
+}
+.curr_balance{
+    width: 200px;
+    height: 25px;
+    float: left;
+    margin: 10px;
+    margin-top: 30px;
+}
+.wallet{
+    width: 25px;
+    height: 25px;
+    float: left;
+}
+.balance{
+    height: 25px;
+    width: 135px;
+    padding-left: 40px;
+    font-size: 15px;
+}
+.profile{
+    width: 50px;
+    height: 50px;
+    float: left;
+    margin: 10px; 
+    margin-top: 20px;
+    padding-left: 0px;
+}
+.table_cart{
+    width: 1103px;
+    height: 300px;
+    vertical-align: middle;
+}
+
+.buttons_upper_table{
+    height: 30px;
+    margin: 5px 0;
+    background: radial-gradient(blue,lightblue,pink);
+}
+.button_top_left{
+    height: 30px;
+    text-align: center;
+    float: left;
+}
+.button_top_right{
+    height: 30px;
+    
+    float: right;
+}
+.buttons_secondary{
+    background: lightblue;
+    color: #000;
+}
+.table_cart_product{
+    width: 200px;
+    height: 50px;
+    text-align: center;
+    float: left;
+    margin: 10px;
+}
+.table_cart_name{
+    width: 400px;
+    height: 50px;
+    text-align: center;
+    float: left;
+    margin: 10px;
+}
+.table_cart_price{
+    width: 100px;
+    height: 50px;
+    text-align: center;
+    float: left;
+    margin: 10px;
+}
+.table_cart_weight{
+    width: 100px;
+    height: 50px;
+    text-align: center;
+    float: left;
+    margin: 10px;
+}
+.table_cart_summary{
+    width: 150px;
+    height: 50px;
+    text-align: center;
+    float: left;
+    margin: 10px;
+}
+.table_cart_product_body{
+    width: 200px;
+    height: 200px;
+    text-align: center;
+    float: left;
+    margin: 10px;
+}
+.table_cart_name_body{
+    width: 400px;
+    height: 200px;
+    text-align: center;
+    float: left;
+    margin: 10px;
+}
+.table_cart_price_body{
+    width: 100px;
+    height: 200px;
+    text-align: center;
+    float: left;
+    margin: 10px;
+}
+.table_cart_weight_body{
+    width: 100px;
+    height: 200px;
+    text-align: center;
+    float: left;
+    margin: 10px;
+}
+
+.table_cart_summary_body{
+    width: 150px;
+    height: 200px;
+    text-align: center;
+    float: left;
+    margin: 10px;
+}

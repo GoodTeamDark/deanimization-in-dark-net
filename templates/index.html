@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/styles.css')}}">
+    <title>{{title}}</title>
+</head>
+<body> 
+    <header>
+        <div class="top_line_location">
+            <div class="loc">
+                <img src="{{ url_for('static',filename='img/location-img.svg')}}" alt="говно" class="location-image" style="width: 20px;height: 20px;margin-left: 50px;">
+            </div>
+            <div class="city">
+                <a href=""><p style="color: blue;padding-left: 10px;">Москва</p></a>
+            </div>
+        </div>
+        <div class="user_menu">
+            <div class="logo_and_search">
+                <div class="logo">
+                    <a href="{{url_for('index')}}"><img src="{{ url_for('static',filename='img/logo.svg')}}" alt="logo" style="width: 250px;height: 80px;"></a>
+                </div>
+                <div class="search">
+                    <input type="search" id="site-search" name="string" autocomplete="on" width="100px" placeholder="Поиск...">
+                    <button style="margin-left: -3px;">Search</button>
+                </div>
+            </div>
+            <div class="account_menu">
+                <div class="cart">
+                   <a href="cart.html" class="menu_links"><img src="{{ url_for('static',filename='img/cart.svg')}}" alt="cart" ></a>
+                </div>
+                <div class="mail">
+                    <a href="" class="menu_links"><img src="{{ url_for('static',filename='img/mail.svg')}}" alt="mail"></a>
+                </div>
+                <div class="curr_balance">
+                    <div class="wallet"><a href="" class="menu_links"><img src="{{ url_for('static',filename='img/wallet.svg')}}" alt="wallet"></a></div>
+                    <div class="balance"><a href="" style="color: blue;"><p>#цифры баланса</p></a></div>
+                </div>
+                <div class="profile">
+                    <a href="{{url_for('logout')}}" class="menu_links"><img src="{{ url_for('static',filename='img/profile_av.svg')}}" alt="profile" ></a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="menu">
+        <nav>
+            <ul class="topmenu">
+                <li><a href="" class="down">Категории</a>
+                <ul class="submenu">
+                    <li><a href="">пики точеные</a></li>
+                    <li><a href="">хуи дроченые</a></li>
+                    <li><a href="">кошачьи жопы</a></li>
+                    <li><a href="">укроп</a></li>
+                    <li><a href="">картошка</a></li>
+                    <li><a href="">мандавошки</a></li>
+                    <li><a href="">жопа костяна</a></li>
+                    <li><a href="">найм бомжей</a></li>
+                    <li><a href="">шуткисильвера</a></li>
+                    <li><a href="">кактусы</a></li>
+                    <li><a href="">мать калинина</a></li>
+                    <li><a href="">мать жукова</a></li>
+                </ul>
+                </li>
+                <li><a href="" class="down">Магазины</a>
+                </li>
+                <li><a href="">Товары</a></li>
+                <li><a href="">Избранное</a></li>
+                
+            </ul>
+        </nav>
+    </div>
+    </div>
+    <div class="content">
+        <div class="filters">
+            <form id="filter" method="POST"  autocomplete="off">
+
+            <div class="filter-metro">
+                <legend><p style="color: rgb(11, 8, 95);font-family: Georgia, 'Times New Roman', Times, serif;font-weight: bold;">Метро</p>
+                <select id="selectStation"  name="variants" class="select-station-select-main">
+
+                    <option value="station1" name="variant">станция 1</option>
+                    <option value="station2" name="variant">станция 2</option>
+                    <option value="station3" name="variant">станция 3</option>
+                    <option value="station4" name="variant">станция 4</option>
+                    <option value="station5" name="variant">станция 5</option>
+                    <option value="station6" name="variant">станция 6</option>
+                    <option value="station7" name="variant">станция 7</option>
+                    <option value="station8" name="variant">станция 8</option>
+                    <option value="station9" name="variant">станция 9</option>
+                    <option value="station10" name="variant">станция 10</option>
+                    <option value="station11" name="variant">станция 11</option>
+                    <option value="station12" name="variant">станция 12</option>
+                    </select>
+                </legend>
+            </div>
+            <div class="filter-type">
+                <legend><p style="color: black;">Тип доставки))00)</p>
+                    <select id="selectType" class="select-type-main">
+    
+                        <option value="var1">Тайник</option>
+                        <option value="var2">Прикоп</option>
+                        <option value="var3">Магнит</option>
+                        
+                        </select>
+                    </legend>
+            </div>
+            <div class="filter-price">
+
+            </div>
+            <button type="submit" class="UpdateFilters" style="align-self: center;margin-left: 40%;margin-top: 15px;">Поиск</button>
+            </form>
+        </div>
+            <div class="shop-list-container">
+                {%for i in range(0,8)%}
+                        <div class="col-md-8 products">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="product">
+                                        <div class="product-img">
+                                            <a href="{{url_for('shop')}}"><img src="{{ shop_cards[i]['shop_image']}}" alt="shop-ava" ></a>
+                                        </div>
+                                        <p class="product-title">
+                                            <a href="#">{{shop_cards[i]['shop_name']}}</a>
+                                        </p>
+                                        <p class="product-desc">{{shop_cards[i]['shop_desc']}}</p>
+                                        <p class="product-rating">{{shop_cards[i]['shop_rating']}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                {%endfor%}
+            </div>
+            
+        </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    </div>
+    <footer>
+        <div class="top-text-signature">
+            <p>Этот жесткий сайт был сделан мной (нами)!!!</p>
+        </div>
+        <div class="main-contacts-list">
+            <ul class="bottom_menu">
+                    <li><a href="" class="down"><h3>Жесткий контакт 1</h3></a>
+                        <ul class="submenu-contacts">
+                            <li><a href="">Кудаков Роман</a></li>
+                            <li><a href="">БББО-01-19</a></li>
+                            <li><a href="">Бэкэнд разработка, логирование, верстка, разработка БД</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="" class="down"><h3>Жесткий контакт 2</h3></a>
+                        <ul class="submenu-contacts">
+                            <li><a href="">Фадеев Артём</a></li>
+                            <li><a href="">БББО-01-19</a></li>
+                            <li><a href="">Разработка БД и бэкэнда</a></li>
+                        </ul>
+                    </li>
+                    <li><a href=""><h3>Жесткий контакт 3</h3></a>
+                        <ul class="submenu-contacts">
+                            <li><a href="">Фомин Андрей</a></li>
+                            <li><a href="">БББО-01-19</a></li>
+                            <li><a href="">Разработка JS, верстка</a></li>
+                        </ul></li>
+                    <li><a href=""><h3>Жесткий контакт 4</h3></a>
+                        <ul class="submenu-contacts">
+                            <li><a href="">Борисов Константин</a></li>
+                            <li><a href="">БББО-01-19</a></li>
+                            <li><a href="">Душа компании и просто хороший человек</a></li>
+                        </ul></li>
+                    
+            </ul>
+            </Ul>
+        </div>
+        <div class="bottom-text-copyrights">
+
+        </div>
+    </footer>
+</body>
+</html>
