@@ -35,7 +35,8 @@
                     <a href="" class="menu_links"><img src="{{ url_for('static',filename='img/mail.svg')}}" alt="mail"></a>
                 </div>
                 <div class="curr_balance">
-                    <div class="wallet"><a href="" class="menu_links"><img src="{{ url_for('static',filename='img/wallet.svg')}}" alt="wallet"></a></div>
+                    <div class="wallet"><a href="{{url_for('deposit')}}" class="menu_links"><img
+                            src="{{ url_for('static',filename='img/wallet.svg')}}" alt="wallet"></a></div>
                     <div class="balance"><a href="" style="color: blue;"><p>#цифры баланса</p></a></div>
                 </div>
                 <div class="profile">

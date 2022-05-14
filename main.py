@@ -1,11 +1,10 @@
 from datetime import datetime
-from flask import Flask, request, render_template, url_for, flash,redirect
+
+from flask import Flask, request, render_template, url_for, flash, redirect
 from flask import session as s
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import check_password_hash, generate_password_hash
-
-
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://postgres:123@localhost:5432/mydb'
@@ -31,6 +30,7 @@ Stations_to_Districts = db.Table('Stations_to_Districts',
 )
 
 
+
 class User(db.Model, UserMixin):
     __tablename__="user"
     id=db.Column(db.Integer,primary_key=True)
@@ -38,7 +38,8 @@ class User(db.Model, UserMixin):
     password=db.Column(db.String(255), nullable=False)
     sessions=db.relationship('Session',secondary=User_to_sessions,backref='uses_session')
     stations = db.relationship('Station', secondary=User_to_stations, backref='uses_station')
-
+    phone = db.relationship("PhoneNumber", backref="uses_phone_number")
+    cards = db.relationship("BankCards", backref="uses_bank_cards")
 
 class Session(db.Model):
     __tablename__ ='session'
@@ -58,6 +59,21 @@ class District(db.Model):
     __tablename__ ='district'
     id=db.Column(db.Integer,primary_key=True)
     name=db.Column(db.String(128),nullable=False)
+
+
+class BankCards(db.Model):
+    __tablename__ = 'BankCards'
+    number = db.Column(db.String(128), primary_key=True)
+    owner_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    valid_till = db.Column(db.Date, nullable=False)
+    ccv = db.Column(db.String(255), nullable=False)
+
+
+class PhoneNumber(db.Model):
+    __tablename__ = 'PhoneNumber'
+    number = db.Column(db.String(128), primary_key=True)
+    owner_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    moddeb_number = db.Column(db.String(128), nullable=False)
 
 
 db.create_all()
@@ -131,6 +147,7 @@ def logout():
     session.logout = s['logout']
     db.session.commit()
     logout_user()
+    s.clear()
     return redirect(url_for('login_page'))
 
 
@@ -156,7 +173,7 @@ def register():
 @login_required
 @app.route('/shop/<name>')
 def _user(name):
-    return '<h1>This if the shop of {}</h1>'.format(name)
+    return render_template("shop.html")
 
 
 @app.after_request
@@ -171,6 +188,24 @@ def redirect_to_signin(response):
 def shop():
     return render_template("shop.html")
 
+
+@app.route('/deposit', methods=['GET', 'POST'])
+@login_required
+def deposit():
+    if request.method == 'POST':
+        name = request.form.get('name')
+        cardnumber = request.form.get('cardnumber')
+        expirationdate = request.form.get('expirationdate')
+        securitycode = request.form.get('securitycode')
+        if name and cardnumber and expirationdate and securitycode:
+            user = User.query.filter_by(login=s['username']).first()
+            if not BankCards.query.filter_by(number=cardnumber).first():
+                hash_ccv = generate_password_hash(securitycode)
+                new_card = BankCards(number=cardnumber, owner_id=user.id, valid_till=expirationdate, ccv=hash_ccv)
+                db.session.add(new_card)
+                db.session.commit()
+            return redirect(url_for('deposit'))
+    return render_template("deposit.html")
 
 if __name__ == '__main__':
     app.run(debug=True)
