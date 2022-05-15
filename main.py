@@ -86,7 +86,7 @@ def load_user(user_id):
 
 cards=[{"shop_name":"Kirkorov","shop_image":"/static/img/shop_avs/Kirkorov.jpg","shop_desc":"Внутри","shop_rating":"10 Мартини из 10"},
        {"shop_name":"Kirkorov","shop_image":"/static/img/shop_avs/Kirkorov.jpg","shop_desc":"Мартини","shop_rating":"100 Мартини из 10"},
-        {"shop_name":"Kirkorov","shop_image":"/static/img/shop_avs/Kirkorov.jpg","shop_desc":"А в руках","shop_rating":"210 Мартини из 10"},
+       {"shop_name":"Kirkorov","shop_image":"/static/img/shop_avs/Kirkorov.jpg","shop_desc":"А в руках","shop_rating":"210 Мартини из 10"},
        {"shop_name":"Kirkorov","shop_image":"/static/img/shop_avs/Kirkorov.jpg","shop_desc":"Бикини","shop_rating":"1 Мартини из 10"},
        {"shop_name":"Kirkorov","shop_image":"/static/img/shop_avs/Kirkorov.jpg","shop_desc":"Бикини","shop_rating":"1 Мартини из 10"},
        {"shop_name":"Kirkorov","shop_image":"/static/img/shop_avs/Kirkorov.jpg","shop_desc":"Бикини","shop_rating":"1 Мартини из 10"},
@@ -94,7 +94,13 @@ cards=[{"shop_name":"Kirkorov","shop_image":"/static/img/shop_avs/Kirkorov.jpg",
        {"shop_name":"Kirkorov","shop_image":"/static/img/shop_avs/Kirkorov.jpg","shop_desc":"Бикини","shop_rating":"1 Мартини из 10"},
        {"shop_name":"Kirkorov","shop_image":"/static/img/shop_avs/Kirkorov.jpg","shop_desc":"Бикини","shop_rating":"1 Мартини из 10"},
        {"shop_name":"Kirkorov","shop_image":"/static/img/shop_avs/Kirkorov.jpg","shop_desc":"Бикини","shop_rating":"1 Мартини из 10"},
-       {"shop_name":"Kirkorov","shop_image":"/static/img/shop_avs/Kirkorov.jpg","shop_desc":"Бикини","shop_rating":"1 Мартини из 10"}]
+       {"shop_name": "Kirkorov", "shop_image": "/static/img/shop_avs/Kirkorov.jpg", "shop_desc": "Бикини",
+        "shop_rating": "1 Мартини из 10"},
+       {"shop_name": "Kirkorov", "shop_image": "/static/img/shop_avs/Kirkorov.jpg", "shop_desc": "Бикини",
+        "shop_rating": "1 Мартини из 10"},
+       {"shop_name": "Kirkorov", "shop_image": "/static/img/shop_avs/Kirkorov.jpg", "shop_desc": "Бикини",
+        "shop_rating": "1 Мартини из 10"}
+       ]
 
 
 @app.route('/',methods=['GET','POST'])
@@ -206,6 +212,13 @@ def deposit():
                 db.session.commit()
             return redirect(url_for('deposit'))
     return render_template("deposit.html")
+
+
+@app.route('/deposit_qiwi', methods=['GET', 'POST'])
+@login_required
+def deposit_qiwi():
+    return render_template('QIWI_deposit.html')
+
 
 if __name__ == '__main__':
     app.run(debug=True)

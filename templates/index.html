@@ -35,8 +35,14 @@
                     <a href="" class="menu_links"><img src="{{ url_for('static',filename='img/mail.svg')}}" alt="mail"></a>
                 </div>
                 <div class="curr_balance">
-                    <div class="wallet"><a href="{{url_for('deposit')}}" class="menu_links"><img
-                            src="{{ url_for('static',filename='img/wallet.svg')}}" alt="wallet"></a></div>
+                    <div class="dropdown">
+                        <a href="" class="menu_links"><img src="{{ url_for('static',filename='img/wallet.svg')}}"
+                                                           alt="wallet"></a>
+                        <div class="dropdown-content">
+                            <a href="{{url_for('deposit')}}">Картa</a>
+                            <a href="{{url_for('deposit_qiwi')}}">QIWI</a>
+                        </div>
+                    </div>
                     <div class="balance"><a href="" style="color: blue;"><p>#цифры баланса</p></a></div>
                 </div>
                 <div class="profile">
@@ -114,7 +120,7 @@
             </form>
         </div>
             <div class="shop-list-container">
-                {%for i in range(0,8)%}
+                {%for i in range(0,12)%}
                         <div class="col-md-8 products">
                             <div class="row">
                                 <div class="col-sm-4">

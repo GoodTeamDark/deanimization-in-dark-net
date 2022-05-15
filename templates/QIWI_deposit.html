@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/QIWI_deposit.css')}}">
+    <link href="https://fonts.googleapis.com/css?family=Raleway|Rock+Salt|Source+Code+Pro:300,400,600" rel="stylesheet">
+
+    <title>Document</title>
+</head>
+<body>
+<header>
+    <div class="top_line_location">
+        <div class="loc">
+            <img src="{{ url_for('static',filename='img/location-img.svg')}}" alt="говно" class="location-image"
+                 style="width: 20px;height: 20px;margin-left: 50px;">
+        </div>
+        <div class="city">
+            <a href=""><p style="color: blue;padding-left: 10px;">Москва</p></a>
+        </div>
+    </div>
+    <div class="user_menu">
+        <div class="logo_and_search">
+            <div class="logo">
+                <a href="{{url_for('index')}}"><img src="{{ url_for('static',filename='img/logo.svg')}}" alt="logo"
+                                                    style="width: 250px;height: 80px;"></a>
+            </div>
+            <div class="search">
+                <input type="search" id="site-search" name="string" autocomplete="on" width="100px" height="20px"
+                       placeholder="Поиск...">
+
+            </div>
+        </div>
+        <div class="account_menu">
+            <div class="cart">
+                <a href="cart.html" class="menu_links"><img src="{{ url_for('static',filename='img/cart.svg')}}"
+                                                            alt="cart"></a>
+            </div>
+            <div class="mail">
+                <a href="" class="menu_links"><img src="{{ url_for('static',filename='img/mail.svg')}}" alt="mail"></a>
+            </div>
+            <div class="curr_balance">
+                <div class="dropdown">
+                    <a href="" class="menu_links"><img src="{{ url_for('static',filename='img/wallet.svg')}}"
+                                                       alt="wallet"></a>
+                    <div class="dropdown-content">
+                        <a href="{{url_for('deposit')}}">Карта</a>
+                        <a href="{{url_for('deposit_qiwi')}}">QIWI</a>
+
+                    </div>
+                </div>
+                <div class="balance"><a href="" style="color: blue;"><p>#цифры баланса</p></a></div>
+            </div>
+            <div class="profile">
+                <a href="" class="menu_links"><img src="{{ url_for('static',filename='img/profile_av.svg')}}"
+                                                   alt="profile"></a>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="menu">
+    <nav>
+        <ul class="topmenu">
+            <li><a href="" class="down">Категории</a>
+                <ul class="submenu">
+                    <li><a href="">какая-то категория</a></li>
+                    <li><a href="">какая-то категория</a></li>
+                    <li><a href="">какая-то категория</a></li>
+                    <li><a href="">какая-то категория</a></li>
+                    <li><a href="">какая-то категория</a></li>
+                    <li><a href="">какая-то категория</a></li>
+                    <li><a href="">какая-то категория</a></li>
+                    <li><a href="">какая-то категория</a></li>
+                    <li><a href="">какая-то категория</a></li>
+                    <li><a href="">какая-то категория</a></li>
+                    <li><a href="">какая-то категория</a></li>
+                    <li><a href="">какая-то категория</a></li>
+                </ul>
+            </li>
+            <li><a href="" class="down">Магазины</a>
+            </li>
+            <li><a href="">Товары</a></li>
+            <li><a href="">Избранное</a></li>
+
+        </ul>
+    </nav>
+</div>
+</div>
+</body>

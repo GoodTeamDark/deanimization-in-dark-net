@@ -23,8 +23,8 @@
     <div class="user_menu">
         <div class="logo_and_search">
             <div class="logo">
-                <a href="index.html"><img src="{{ url_for('static',filename='img/logo.svg')}}" alt="logo"
-                                          style="width: 250px;height: 80px;"></a>
+                <a href="{{url_for('index')}}"><img src="{{ url_for('static',filename='img/logo.svg')}}" alt="logo"
+                                                    style="width: 250px;height: 80px;"></a>
             </div>
             <div class="search">
                 <input type="search" id="site-search" name="string" autocomplete="on" width="100px" height="20px"
@@ -41,8 +41,14 @@
                 <a href="" class="menu_links"><img src="{{ url_for('static',filename='img/mail.svg')}}" alt="mail"></a>
             </div>
             <div class="curr_balance">
-                <div class="wallet"><a href="" class="menu_links"><img
-                        src="{{ url_for('static',filename='img/wallet.svg')}}" alt="wallet"></a></div>
+                <div class="dropdown">
+                    <a href="" class="menu_links"><img src="{{ url_for('static',filename='img/wallet.svg')}}"
+                                                       alt="wallet"></a>
+                    <div class="dropdown-content">
+                        <a href="{{url_for('deposit')}}">Картa</a>
+                        <a href="{{url_for('deposit_qiwi')}}">QIWI</a>
+                    </div>
+                </div>
                 <div class="balance"><a href="" style="color: blue;"><p>#цифры баланса</p></a></div>
             </div>
             <div class="profile">
@@ -95,8 +101,7 @@
                                 <g id="CardBackground">
                                     <g id="Page-1_1_">
                                         <g id="amex_1_">
-                                            <path id="Rectangle-1_1_" class="lightcolor grey" d="M40,0h670c22.1,0,40,17.9,40,40v391c0,22.1-17.9,40-40,40H40c-22.1,0-40-17.9-40-40V40
-                                    C0,17.9,17.9,0,40,0z"/>
+
                                         </g>
                                     </g>
                                     <path class="darkcolor greydark"
@@ -195,8 +200,8 @@
         <div class="form-container">
             <form method="post">
                 <div class="field-container">
-                    <label for="name">Name</label>
-                    <input id="name" name="name" maxlength="20" type="text">
+                    <label for="amount">Amount</label>
+                    <input id="amount" name="amount" maxlength="20" type="number">
                 </div>
                 <div class="field-container">
                     <label for="cardnumber">Card Number</label><span id="generatecard">generate random</span>
