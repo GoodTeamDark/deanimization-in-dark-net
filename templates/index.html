@@ -46,7 +46,8 @@
                     <div class="balance"><a href="" style="color: blue;"><p>#цифры баланса</p></a></div>
                 </div>
                 <div class="profile">
-                    <a href="{{url_for('logout')}}" class="menu_links"><img src="{{ url_for('static',filename='img/profile_av.svg')}}" alt="profile" ></a>
+                    <a href="{{url_for('_user',name=session['username'])}}" class="menu_links"><img
+                            src="{{ url_for('static',filename='img/profile_av.svg')}}" alt="profile"></a>
                 </div>
             </div>
         </div>

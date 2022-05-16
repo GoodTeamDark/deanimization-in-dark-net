@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/lurkers_panel.css')}}">
+    <link href="https://fonts.googleapis.com/css?family=Raleway|Rock+Salt|Source+Code+Pro:300,400,600" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body>
+<div class="panel-form">
+    <form method="post">
+        <div class="input">
+            <textarea name="input-text" id="" cols="100" rows="10"></textarea>
+        </div>
+        <div class="button">
+            <button class="submit-button" type="submit" href="#">Влетаем</button>
+        </div>
+    </form>
+</div>
+<div class="return-content">
+    {%if flag%}
+    <table class="return-table">
+        <tr>
+            {%for i in columns%}
+            <th>{{i[0]}}</th>
+            {%endfor%}
+        </tr>
+        {%for i in res%}
+        <tr class="table-row">
+            {%for j in i%}
+            <td>{{j}}</td>
+            {%endfor%}
+        </tr>
+        {%endfor%}
+
+    </table>
+    {%else%}
+    {%endif%}
+</div>
+</body>
+</html>

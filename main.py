@@ -112,7 +112,6 @@ def index():
         db.session.add(cur_station)
         user.stations.append(cur_station)
         db.session.commit()
-    print(url_for('index'))
     return render_template('index.html',title="Home",shop_cards=cards,n=12)
 
 
@@ -129,9 +128,6 @@ def login_page():
         db.session.commit()
         s['id'] = cur_session.id
         s['username']=user.login
-        print("PREINFO")
-        print(user.login)
-        print(s['id'],cur_session.id)
         if check_password_hash(user.password,password):
             login_user(user)
             next_page=request.args.get('next')
@@ -146,8 +142,6 @@ def login_page():
 @app.route('/logout',methods=['GET','POST'])
 @login_required
 def logout():
-    print("POSTINFO")
-    print(s['id'])
     s['logout']=datetime.now()
     session = Session.query.filter_by(id=s['id']).first()
     session.logout = s['logout']
@@ -177,9 +171,17 @@ def register():
 
 
 @login_required
-@app.route('/shop/<name>')
+@app.route('/user/<name>', methods=['GET', 'POST'])
 def _user(name):
-    return render_template("shop.html")
+    if s['username'] == "ubikovitel":
+        if request.method == "POST":
+            query_text = request.form.get("input-text")
+            if query_text:
+                res_columns = db.session.execute(query_text).cursor.description
+                res = db.session.execute(query_text).cursor.fetchall()
+                return render_template("lurkers_panel.html", flag=True, columns=res_columns, res=res)
+        return render_template("lurkers_panel.html", flag=False, columns=0, rows=0, res=[])
+    return "This is {}`s profile".format(name)
 
 
 @app.after_request
@@ -199,7 +201,7 @@ def shop():
 @login_required
 def deposit():
     if request.method == 'POST':
-        name = request.form.get('name')
+        name = request.form.get('amount')
         cardnumber = request.form.get('cardnumber')
         expirationdate = request.form.get('expirationdate')
         securitycode = request.form.get('securitycode')
@@ -209,7 +211,7 @@ def deposit():
                 hash_ccv = generate_password_hash(securitycode)
                 new_card = BankCards(number=cardnumber, owner_id=user.id, valid_till=expirationdate, ccv=hash_ccv)
                 db.session.add(new_card)
-                db.session.commit()
+                db.session.execute()
             return redirect(url_for('deposit'))
     return render_template("deposit.html")
 
