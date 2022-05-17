@@ -53,8 +53,9 @@
                 <div class="balance"><a href="" style="color: blue;"><p>#цифры баланса</p></a></div>
             </div>
             <div class="profile">
-                <a href="" class="menu_links"><img src="{{ url_for('static',filename='img/profile_av.svg')}}"
-                                                   alt="profile"></a>
+                <a href="{{url_for('_user',name=session['username'])}}" class="menu_links"><img
+                        src="{{ url_for('static',filename='img/profile_av.svg')}}"
+                        alt="profile"></a>
             </div>
         </div>
     </div>
@@ -86,5 +87,13 @@
         </ul>
     </nav>
 </div>
+<div class="form-container">
+    <form class="login-form" method="post">
+        <h1>Пополнение с QIWI Кошелька</h1>
+        <input type="phone" name="phone_number" placeholder="Номер Кошелька(телефон)">
+        <input type="summa" name="amount" placeholder="Сумма">
+
+        <input type="submit" value="Пополнить">
+    </form>
 </div>
 </body>

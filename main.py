@@ -13,6 +13,7 @@ app.secret_key='asdfdsagg43498-2]-\[wef'
 db = SQLAlchemy(app)
 manager=LoginManager(app)
 
+
 User_to_sessions = db.Table('User_to_sessions',
     db.Column('User_id', db.Integer, db.ForeignKey('user.id'), primary_key=True),
     db.Column('Session_id', db.Integer, db.ForeignKey('session.id'), primary_key=True)
@@ -73,7 +74,7 @@ class PhoneNumber(db.Model):
     __tablename__ = 'PhoneNumber'
     number = db.Column(db.String(128), primary_key=True)
     owner_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    moddeb_number = db.Column(db.String(128), nullable=False)
+    modded_number = db.Column(db.String(128), nullable=False)
 
 
 db.create_all()
@@ -83,6 +84,9 @@ db.session.commit()
 def load_user(user_id):
     return User.query.get(user_id)
 
+
+def mod_num(number):
+    return "+" + number[0] + " (" + number[1:4] + ") " + number[4:7] + " " + number[7:9] + "-" + number[9:11]
 
 cards=[{"shop_name":"Kirkorov","shop_image":"/static/img/shop_avs/Kirkorov.jpg","shop_desc":"Внутри","shop_rating":"10 Мартини из 10"},
        {"shop_name":"Kirkorov","shop_image":"/static/img/shop_avs/Kirkorov.jpg","shop_desc":"Мартини","shop_rating":"100 Мартини из 10"},
@@ -162,11 +166,12 @@ def register():
         elif password!=password2:
             return 'asfsdfsaf'#Flash
         else:
-            hash_pwd=generate_password_hash(password)
-            new_user=User(login=_login,password=hash_pwd)
-            db.session.add(new_user)
-            db.session.commit()
-            return redirect(url_for('login_page'))
+            if not User.query.filter_by(login=_login).first():
+                hash_pwd = generate_password_hash(password)
+                new_user = User(login=_login, password=hash_pwd)
+                db.session.add(new_user)
+                db.session.commit()
+                return redirect(url_for('login_page'))
     return render_template('register.html')
 
 
@@ -219,9 +224,16 @@ def deposit():
 @app.route('/deposit_qiwi', methods=['GET', 'POST'])
 @login_required
 def deposit_qiwi():
-    return render_template('QIWI_deposit.html')
-
+    if request.method == 'POST':
+        phone_number = request.form.get("phone_number")
+        user = User.query.filter_by(login=s['username']).first()
+        if not PhoneNumber.query.filter_by(number=phone_number).first():
+            new_phone = PhoneNumber(number=phone_number, owner_id=user.id, modded_number=mod_num(phone_number))
+            db.session.add(new_phone)
+            db.session.commit()
+    return render_template("QIWI_deposit.html")
 
 if __name__ == '__main__':
     app.run(debug=True)
     pass
+
